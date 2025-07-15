@@ -173,7 +173,7 @@
 }
 
 .main-section__title {
-  padding-bottom: 20px;
+  padding-bottom: 19px;
   color: var(--paragraph-title-color);
   font-family: var(--main-font-family);
   font-weight: bold;
@@ -320,14 +320,11 @@
   .focus-advices {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: repeat(auto-fit, 1fr);
     gap: 20px;
   }
 
   .focus-advices .main-section__title {
     grid-column: 1;
-    grid-row-start: span 2;
-    grid-row-end: auto;
   }
 
   .focus-advices__paragraph {
@@ -355,12 +352,12 @@
     grid-row: 1 / span 2;
   }
 
-  .focus-pictures_image:nth-child(3) {
+  .focus-pictures_image:nth-child(4) {
     grid-column: 2;
     grid-row: 2;
   }
 
-  .focus-pictures_image:nth-child(4) {
+  .focus-pictures_image:nth-child(3) {
     grid-column: 1;
     grid-row: 2 / span 2;
   }

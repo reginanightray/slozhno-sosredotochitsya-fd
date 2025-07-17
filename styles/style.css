@@ -205,12 +205,12 @@
   margin-bottom: 10px;
 }
 
-.card {
-  color: var(--main-text-color);
+.card__title--light {
+  font-weight: initial;
 }
 
-.card .card__title--light {
-  font-weight: initial;
+.card {
+  color: var(--main-text-color);
 }
 
 .card__paragraph:not(:last-of-type) {
@@ -229,7 +229,9 @@
 }
 
 .card__link:hover {
-  border-bottom: 1px solid var(--main-text-color);
+  -webkit-box-shadow: 0 2px 0 -1px var(--main-text-color);
+  -moz-box-shadow: 0 2px 0 -1px var(--main-text-color);
+  box-shadow: 0 2px 0 -1px var(--main-text-color);
 }
 
 .card__link:focus-visible {
@@ -240,7 +242,11 @@
 .focus-pictures_picture-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: clamp(
+    0.625rem,
+    2.545vw + 0.029rem,
+    1.25rem
+  );/*отступ меняется 10 -> 20 */
   padding-top: clamp(
     0.625rem,
     2.545vw + 0.029rem,
@@ -319,7 +325,6 @@
   .focus-pictures_picture-container {
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(3, auto);
-    gap: 20px;
   }
 
   .focus-pictures_image {

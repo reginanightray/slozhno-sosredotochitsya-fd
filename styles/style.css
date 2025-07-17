@@ -16,6 +16,11 @@
   display: grid;
   grid-template-columns: 1fr;
   justify-items: start;
+  padding-left: 10px;
+}
+
+.decorated-zone {
+  position: relative;
   height: 1vh;
   min-height: clamp(41.75rem, 90.585vw + 20.519rem, 64rem);
   padding-right: clamp(
@@ -23,39 +28,33 @@
     2.545vw + 0.029rem,
     1.25rem
   ); /*отступ 10px стал 20px*/
-  padding-left: 10px;
 }
 
-.decorated-zone {
-  position: relative;
-}
-
+.decorated-zone::after,
 .decorated-zone::before {
   content: "";
   position: absolute;
-  top: clamp(0.625rem, 2.545vw + 0.029rem, 1.25rem); /*отступ 10px стал 20px*/
-  right: clamp(0.625rem, 2.545vw + 0.029rem, 1.25rem); /*отступ 10px стал 20px*/
   display: block;
-  border-top: 1px solid var(--decorated-element-color);
-  border-right: 1px solid var(--decorated-element-color);
   block-size: 25px;
   inline-size: 25px;
 }
 
+.decorated-zone::before {
+  top: clamp(0.625rem, 2.545vw + 0.029rem, 1.25rem); /*отступ 10px стал 20px*/
+  right: clamp(0.625rem, 2.545vw + 0.029rem, 1.25rem); /*отступ 10px стал 20px*/
+  border-top: 1px solid var(--decorated-element-color);
+  border-right: 1px solid var(--decorated-element-color);
+}
+
 .decorated-zone::after {
-  content: "";
-  position: absolute;
   bottom: clamp(
     0.625rem,
     2.545vw + 0.029rem,
     1.25rem
   ); /*отступ 10px стал 20px*/
   left: clamp(0.625rem, 2.545vw + 0.029rem, 1.25rem); /*отступ 10px стал 20px*/
-  display: block;
   border-bottom: 1px solid var(--decorated-element-color);
   border-left: 1px solid var(--decorated-element-color);
-  block-size: 25px;
-  inline-size: 25px;
 }
 
 .header__decorated-element {
@@ -63,7 +62,7 @@
   top: clamp(0.625rem, 2.545vw + 0.029rem, 1.25rem); /*отступ 10px стал 20px*/
   right: clamp(1.188rem, 2.545vw + 0.591rem, 1.813rem); /*отступ 19 стал 29px*/
   color: var(--decorated-element-color);
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), sans-serif;
   font-weight: normal;
   font-size: 18px;
   line-height: 25px;
@@ -72,12 +71,14 @@
 
 .header__decorated-element::after {
   content: "";
+  position: relative;
+  bottom: 2px;
   display: inline-block;
   width: 9px;
   height: 9px;
   margin-left: 10px;
   border-radius: 50%;
-  box-shadow: 0px 0px 4px var(--decorated-element-color);
+  box-shadow: 0px 0px 4px 2px var(--decorated-element-color);
   background-color: var(--decorated-element-color);
 }
 
@@ -94,11 +95,11 @@
 }
 
 .header__theme-menu-button {
-  width: 70px;
+  min-width: 70px;
   border: none;
   padding: 4px 13px;
   color: var(--button-color);
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), sans-serif;
   font-weight: normal;
   font-size: 18px;
   line-height: 100%;
@@ -122,7 +123,9 @@
 }
 
 .header__theme-menu-button:focus-visible {
-  border-bottom: 1px solid var(--button-color);
+  -webkit-box-shadow: 0 2px 0 -1px var(--button-color);
+  -moz-box-shadow: 0 2px 0 -1px var(--button-color);
+  box-shadow: 0 2px 0 -1px var(--button-color);
 }
 
 .header__title {
@@ -131,7 +134,6 @@
 
 .main-title_decoration {
   color: var(--title-color);
-  font-family: var(--main-font-family);
   font-weight: bold;
   font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   line-height: 82.5%;
@@ -140,7 +142,6 @@
 
 .title-decor {
   color: var(--accent-text-color);
-  font-family: var(--main-font-family);
   font-size: 18px;
   line-height: 23.4px;
   background-color: var(--accent-color);
@@ -175,7 +176,6 @@
 .main-section__title {
   padding-bottom: 19px;
   color: var(--paragraph-title-color);
-  font-family: var(--main-font-family);
   font-weight: bold;
   font-size: 18px;
   line-height: 23.4px;
@@ -195,8 +195,12 @@
   color: var(--main-text-color);
 }
 
-.card h4 {
+.card .card__title--light {
   font-weight: initial;
+}
+
+.card__paragraph:not(:last-of-type) {
+  margin-bottom: 5px;
 }
 
 .card-list__item:last-child {
@@ -252,17 +256,6 @@
 .footer {
   display: flex;
   align-items: center;
-  height: 1vh;
-  min-height: clamp(
-    41.75rem,
-    90.585vw + 20.519rem,
-    64rem
-  ); /*высота 668 стала 1024*/
-  padding-right: clamp(
-    0.625rem,
-    2.545vw + 0.029rem,
-    1.25rem
-  ); /*отступ был 10 стал 20*/
   padding-left: clamp(
     0.625rem,
     2.545vw + 0.029rem,
@@ -369,7 +362,7 @@
 }
 
 @media (width >= 1024px) {
-  .header {
+  .decorated-zone {
     min-height: 768px;
   }
 
@@ -407,28 +400,17 @@
   }
 
   .focus-distractors .main-section__title {
-    grid-column: 1;
-    grid-row: 1;
     align-self: start;
   }
 
   .focus-distractors .card-list {
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-flow: rows;
-    grid-row: 2;
+    grid-auto-flow: row;
     grid-column-start: span 3;
     grid-column-end: auto;
   }
 
   .focus-advices {
     gap: 10px;
-  }
-
-  .focus-advices .main-section__subtitle {
-    margin-bottom: 10px;
-  }
-
-  .footer {
-    min-height: 768px;
   }
 }
